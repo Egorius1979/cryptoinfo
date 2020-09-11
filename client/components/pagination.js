@@ -16,7 +16,9 @@ const Pagination = () => {
         <a href="#">
           <button
             type="button"
-            className="w-10 bg-transparent rounded-l-lg mr-3 hover:bg-green-800 hover:text-white md:w-14 outline"
+            className={`${
+              currentPage === 0 ? 'hidden' : 'block'
+            } w-10 bg-transparent rounded-l-lg mr-3 hover:bg-green-800 hover:text-white md:w-14 outline`}
             onClick={() => dispatch(setPage(0))}
           >
             {'<<'}
@@ -25,7 +27,9 @@ const Pagination = () => {
         <a href="#">
           <button
             type="button"
-            className="w-12 bg-transparent text-black hover:bg-black hover:text-white tracking-wider md:w-16 outline"
+            className={`${
+              currentPage === 0 ? 'hidden' : 'block'
+            } w-12 bg-transparent text-black hover:bg-black hover:text-white tracking-wider md:w-16 outline`}
             onClick={() =>
               currentPage === 0
                 ? dispatch(setPage(currentPage))
@@ -38,7 +42,9 @@ const Pagination = () => {
         <a href="#">
           <button
             type="button"
-            className="w-12 bg-transparent mr-3 text-black hover:bg-black hover:text-white tracking-wider md:w-16 outline"
+            className={`${
+              currentPage === pagesAmount ? 'hidden' : 'block'
+            } w-12 bg-transparent mr-3 text-black hover:bg-black hover:text-white tracking-wider md:w-16 outline`}
             onClick={() =>
               currentPage === pagesAmount
                 ? dispatch(setPage(currentPage))
@@ -51,7 +57,9 @@ const Pagination = () => {
         <a href="#">
           <button
             type="button"
-            className="w-10 bg-transparent rounded-r-lg hover:bg-green-800 hover:text-white md:w-14 outline"
+            className={`${
+              currentPage === pagesAmount ? 'hidden' : 'block'
+            } w-10 bg-transparent rounded-r-lg hover:bg-green-800 hover:text-white md:w-14 outline`}
             onClick={() => dispatch(setPage(pagesAmount))}
           >
             {'>>'}
