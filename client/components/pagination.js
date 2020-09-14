@@ -17,7 +17,7 @@ const Pagination = () => {
           <button
             type="button"
             className={`${
-              currentPage === 0 ? 'hidden' : 'block'
+              currentPage === 0 ? 'cursor-not-allowed' : 'inline-block'
             } w-10 bg-transparent rounded-l-lg mr-3 hover:bg-green-800 hover:text-white md:w-14 outline`}
             onClick={() => dispatch(setPage(0))}
           >
@@ -28,7 +28,7 @@ const Pagination = () => {
           <button
             type="button"
             className={`${
-              currentPage === 0 ? 'hidden' : 'block'
+              currentPage === 0 ? 'cursor-not-allowed' : 'inline-block'
             } w-12 bg-transparent text-black hover:bg-black hover:text-white tracking-wider md:w-16 outline`}
             onClick={() =>
               currentPage === 0
@@ -43,7 +43,7 @@ const Pagination = () => {
           <button
             type="button"
             className={`${
-              currentPage === pagesAmount ? 'hidden' : 'block'
+              currentPage === pagesAmount ? 'cursor-not-allowed' : 'inline-block'
             } w-12 bg-transparent mr-3 text-black hover:bg-black hover:text-white tracking-wider md:w-16 outline`}
             onClick={() =>
               currentPage === pagesAmount
@@ -58,7 +58,7 @@ const Pagination = () => {
           <button
             type="button"
             className={`${
-              currentPage === pagesAmount ? 'hidden' : 'block'
+              currentPage === pagesAmount ? 'cursor-not-allowed' : 'inline-block'
             } w-10 bg-transparent rounded-r-lg hover:bg-green-800 hover:text-white md:w-14 outline`}
             onClick={() => dispatch(setPage(pagesAmount))}
           >
