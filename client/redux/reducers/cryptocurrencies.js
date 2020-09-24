@@ -4,14 +4,12 @@ const SET_CRYPTONAME = 'SET_CRYPTONAME'
 const GET_CRYPTO = 'GET_CRYPTO'
 const GET_CRYPTO_PRICE = 'GET_CRYPTO_PRICE'
 const GET_TOP = 'GET_TOP'
-const SET_NEXT_PAGE = 'SET_NEXT_PAGE'
 
 const initialState = {
   cryptoname: '',
   crypto: [],
   crypto_price: '',
   toplist: [],
-  currentPage: 0,
   coinsOnPage: 50
 }
 
@@ -37,8 +35,6 @@ export default (state = initialState, action) => {
       }, [])
       return { ...state, toplist: listbyPages }
     }
-    case SET_NEXT_PAGE:
-      return { ...state, currentPage: action.nextPage }
     default:
       return state
   }
@@ -46,10 +42,6 @@ export default (state = initialState, action) => {
 
 export function setName(cryptoname) {
   return { type: SET_CRYPTONAME, cryptoname }
-}
-
-export function setPage(nextPage) {
-  return { type: SET_NEXT_PAGE, nextPage }
 }
 
 export function getCrypto(cryptoname) {

@@ -7,9 +7,8 @@ import Pagination from './pagination'
 
 const Top = () => {
   const dispatch = useDispatch()
-  const { cryptoNumber } = useParams()
-  const currentPage = useSelector((store) => store.cryptos.currentPage)
-  const toplist = useSelector((store) => store.cryptos.toplist[currentPage])
+  const { cryptoNumber, page } = useParams()
+  const toplist = useSelector((store) => store.cryptos.toplist[+page - 1])
 
   const width = 1200
   const height = 400
@@ -54,7 +53,7 @@ const Top = () => {
   }, [cryptoNumber])
 
   return (
-    <div className="bg-gray-400">
+    <div id="top" className="bg-gray-400">
       <ul className="h-12 flex items-center justify-around text-white font-bold font-sans border border-black sticky_header back md:h-20 md:justify-start">
         <li className="md:w-1/3 md:pl-16 lg:w-1/5">Name</li>
         <li className="hidden lg:block lg:w-1/5">Market Cap</li>

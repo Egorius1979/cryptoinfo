@@ -75,7 +75,7 @@ const RootComponent = (props) => {
           <Switch>
             <Route exact path="/" component={() => <Main />} />
             <Route exact path="/:cryptoName" component={() => <Currency />} />
-            <Route exact path="/list/:cryptoNumber" component={() => <Top />} />
+            <Route exact path="/list/:cryptoNumber/:page" component={() => <Top />} />
             <Route component={() => <NotFound />} />
           </Switch>
         </Startup>

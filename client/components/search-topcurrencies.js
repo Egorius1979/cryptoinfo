@@ -30,13 +30,13 @@ const List = () => {
           onChange={topList}
           onKeyDown={({ key }) => {
             if (key === 'Enter') {
-              window.location = `list/${valueNmb}`
+              window.location = `list/${valueNmb}/1`
             }
           }}
         />
       </div>
       <div>
-        <Link to={`list/${valueNmb}`}>
+        <Link to={`list/${valueNmb}/1`}>
           <button
             className="bg-gray-700 hover:bg-gray-900 text-white font-bold py-2 px-4 border border-blue-700 ml-2 rounded-r-lg"
             id="search-button"
