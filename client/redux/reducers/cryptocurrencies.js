@@ -4,12 +4,14 @@ const SET_CRYPTONAME = 'SET_CRYPTONAME'
 const GET_CRYPTO = 'GET_CRYPTO'
 const GET_CRYPTO_PRICE = 'GET_CRYPTO_PRICE'
 const GET_TOP = 'GET_TOP'
+const GET_PRICE_DATA = 'GET_PRICE_DATA'
 
 const initialState = {
   cryptoname: '',
-  crypto: [],
+  crypto: {},
   crypto_price: '',
   toplist: [],
+  dataset: [],
   coinsOnPage: 50
 }
 
@@ -18,9 +20,11 @@ export default (state = initialState, action) => {
     case SET_CRYPTONAME:
       return { ...state, cryptoname: action.cryptoname }
     case GET_CRYPTO:
-      return { ...state, crypto: [action.crypto] }
+      return { ...state, crypto: action.crypto }
     case GET_CRYPTO_PRICE:
       return { ...state, crypto_price: action.price }
+    case GET_PRICE_DATA:
+      return { ...state, dataset: action.dataset }
     case GET_TOP: {
       let tempArray = []
       let newArray = []
@@ -68,6 +72,14 @@ export function getPrice(cryptoname) {
             price: it.data.data[coin].quote.USD.price.toFixed(2)
           })
     )
+}
+
+export function getPriceData(cryptoname) {
+  return (dispatch) => {
+    axios
+      .get(`/api/v1/currencies/pricedata/${cryptoname}`)
+      .then((it) => dispatch({ type: GET_PRICE_DATA, dataset: it.data }))
+  }
 }
 
 export function getList(number) {

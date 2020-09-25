@@ -68,6 +68,14 @@ server.get('/api/v1/currencies/price/:cryptoname', async (req, res) => {
   res.json(curr)
 })
 
+server.get('/api/v1/currencies/pricedata/:cryptoname', async (req, res) => {
+  const { cryptoname: symbol } = req.params
+  const { data: curr } = await axios(
+    `https://api.twelvedata.com/time_series?symbol=${symbol}/BTC&interval=30min&outputsize=20&dp=8&apikey=${process.env.KEY_2}`
+  )
+  res.json(curr)
+})
+
 server.get('/api/v1/currencies/listing/:number', async (req, res) => {
   const { number } = req.params
   const { data: curr } = await axios({
