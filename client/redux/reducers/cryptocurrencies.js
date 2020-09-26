@@ -8,7 +8,7 @@ const GET_PRICE_DATA = 'GET_PRICE_DATA'
 
 const initialState = {
   cryptoname: '',
-  crypto: {},
+  crypto: '',
   crypto_price: '',
   toplist: [],
   dataset: [],
