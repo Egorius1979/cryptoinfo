@@ -24,7 +24,7 @@ const Currency = () => {
   if (crypto) {
     return (
       <div>
-        {!crypto.name ? (
+        {crypto === 'err' ? (
           <div className="flex text-xl items-center justify-center h-screen bg-gray-900 text-red-500 lg:text-4xl">
             <p>Ты ошибся, нет такой крипты!</p>
           </div>
@@ -76,4 +76,4 @@ const Currency = () => {
   return <div />
 }
 
-export default Currency
+export default React.memo(Currency)
