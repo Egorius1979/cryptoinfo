@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 
 const List = () => {
   const [valueNmb, setValueNmb] = useState('')
+  const history = useHistory()
 
   const topList = (e) => {
     if (!Number.isNaN(+e.target.value)) {
@@ -30,7 +31,7 @@ const List = () => {
           onChange={topList}
           onKeyDown={({ key }) => {
             if (key === 'Enter') {
-              window.location = `list/${valueNmb}/1`
+              history.push(`list/${valueNmb}/1`)
             }
           }}
         />

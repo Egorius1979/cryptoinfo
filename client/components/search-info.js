@@ -1,9 +1,10 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { setName } from '../redux/reducers/cryptocurrencies'
 
 const Info = () => {
+  const history = useHistory()
   const dispatch = useDispatch()
   const cryptoname = useSelector((store) => store.cryptos.cryptoname)
 
@@ -21,7 +22,7 @@ const Info = () => {
           onChange={(e) => dispatch(setName(e.target.value))}
           onKeyDown={({ key }) => {
             if (key === 'Enter') {
-              window.location = cryptoname
+              history.push(cryptoname)
             }
           }}
         />

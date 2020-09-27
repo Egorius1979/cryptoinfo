@@ -19,14 +19,14 @@ const Currency = () => {
     dispatch(getCrypto(cryptoName))
     dispatch(getPrice(cryptoName))
     dispatch(getPriceData(cryptoName))
-  }, [cryptoName])
+  }, [])
 
   if (crypto) {
     return (
       <div>
         {crypto === 'err' ? (
           <div className="flex text-xl items-center justify-center h-screen bg-gray-900 text-red-500 lg:text-4xl">
-            <p>Ты ошибся, нет такой крипты!</p>
+            <p>Вы ошиблись, нет такой крипты, увы!</p>
           </div>
         ) : (
           <div>
@@ -76,4 +76,4 @@ const Currency = () => {
   return <div />
 }
 
-export default React.memo(Currency)
+export default Currency
