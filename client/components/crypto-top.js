@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
-import * as d3 from 'd3'
+import { select, selectAll } from 'd3'
 import { getList } from '../redux/reducers/cryptocurrencies'
 import Pagination from './pagination'
 
 const Top = () => {
+  const [selected, setSelected] = useState('')
   const dispatch = useDispatch()
   const { cryptoNumber, page } = useParams()
   const toplist = useSelector((store) => store.cryptos.toplist[+page - 1])
@@ -15,13 +16,19 @@ const Top = () => {
   const barpadding = 1
   const zero = height / 2
   const barWidth = (width / (toplist || []).length - barpadding).toFixed(0)
-  const change = (toplist || []).map((it) => it.quote.USD.percent_change_24h * 5)
+  const change = (toplist || []).map((it) => ({
+    name: it.name,
+    change: it.quote.USD.percent_change_24h * 5
+  }))
   const text = (toplist || []).map((it) => it.symbol)
 
-  d3.selectAll('.svg svg').remove()
+  useEffect(() => {
+    dispatch(getList(cryptoNumber))
+  }, [cryptoNumber])
 
-  const svg = d3
-    .select('.svg')
+  selectAll('#chart svg').remove()
+
+  const svg = select('#chart')
     .append('svg')
     .attr('width', width)
     .attr('height', height)
@@ -33,10 +40,14 @@ const Top = () => {
     .enter()
     .append('rect')
     .attr('x', (item, index) => ((index * width) / (toplist || []).length).toFixed(0))
-    .attr('y', (item) => (item > 0 ? zero - item : zero))
+    .attr('y', (item) => (item.change > 0 ? zero - item.change : zero))
     .attr('width', barWidth)
-    .attr('height', (item) => (item > 0 ? item : -item))
-    .attr('fill', (item) => (item > 0 ? `rgb(0,${item > 180 ? 180 : item},128)` : 'FireBrick'))
+    .attr('height', (item) => (item.change > 0 ? item.change : -item.change))
+    .attr('id', (item, index) => index)
+    .attr('fill', (item) =>
+      item.change > 0 ? `rgb(0,${item.change > 180 ? 180 : item.change},128)` : 'FireBrick'
+    )
+    .on('mouseover', (d, item) => setSelected(toplist.find((it) => it.name === item.name)))
 
   svg
     .selectAll('text')
@@ -45,12 +56,9 @@ const Top = () => {
     .append('text')
     .text((item) => item)
     .attr('x', (item, index) => index * (width / (toplist || []).length) + barWidth / 2)
-    .attr('y', (item, index) => (change[index] > 0 ? zero + 10 : zero - 50))
-    .style('writing-mode', 'tb')
+    .attr('y', (item, index) => (change.map((it) => it.change)[index] > 0 ? zero + 10 : zero - 50))
 
-  useEffect(() => {
-    dispatch(getList(cryptoNumber))
-  }, [cryptoNumber])
+    .style('writing-mode', 'tb')
 
   return (
     <div id="top" className="bg-gray-400">
@@ -105,7 +113,15 @@ const Top = () => {
       <div className="hidden text-center my-4 md:block">
         <span>Change 24h</span>
       </div>
-      <div className="svg hidden justify-center m-2 md:flex" />
+      <div id="chart" className="hidden justify-center m-2 md:flex" />
+      <div className="flex flex-col justify-center items-center mb-10">
+        <Link to={`/${selected.symbol}`}>
+          <p className="text-2xl text-green-600 font-bold">{selected.name}</p>
+        </Link>
+        <span className={`${!selected.cmc_rank ? 'hidden' : 'block text-red-700'}`}>
+          top-list rank: {selected.cmc_rank}
+        </span>
+      </div>
       <div>
         <Pagination />
       </div>

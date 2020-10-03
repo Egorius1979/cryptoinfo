@@ -71,7 +71,9 @@ server.get('/api/v1/currencies/price/:cryptoname', async (req, res) => {
 server.get('/api/v1/currencies/pricedata/:cryptoname', async (req, res) => {
   const { cryptoname: symbol } = req.params
   const { data: curr } = await axios(
-    `https://api.twelvedata.com/time_series?symbol=${symbol}/BTC&interval=30min&outputsize=20&dp=8&apikey=${process.env.KEY_2}`
+    symbol.toUpperCase() === 'BTC'
+      ? `https://api.twelvedata.com/time_series?symbol=BTC/USDT&interval=1h&outputsize=24&dp=8&apikey=${process.env.KEY_2}`
+      : `https://api.twelvedata.com/time_series?symbol=${symbol}/BTC&interval=1h&outputsize=24&dp=8&apikey=${process.env.KEY_2}`
   )
   res.json(curr)
 })

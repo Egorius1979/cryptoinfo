@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import ReactMarkdown from 'react-markdown'
 import { getCrypto, getPrice, getPriceData } from '../redux/reducers/cryptocurrencies'
+import Chart from './chart'
 import twitter from '../assets/static/images/twitter-4-32.png'
 import reddit from '../assets/static/images/reddit-4-32.png'
 import site from '../assets/static/images/globe-6-32.png'
@@ -11,7 +12,6 @@ const Currency = () => {
   const { cryptoName } = useParams()
   const crypto = useSelector((store) => store.cryptos.crypto)
   const cryptoPrice = useSelector((store) => store.cryptos.crypto_price)
-  // const priceDataSet = useSelector((store) => store.cryptos.dataset)
 
   const dispatch = useDispatch()
 
@@ -64,10 +64,13 @@ const Currency = () => {
               </li>
             </ul>
             {/* <div className="flex justify-center text-green-800">
-            {(priceDataSet.values || []).length === 0
-              ? `Простите, друзья, но в настоящий момент отсутствуют котировки по паре ${cryptoName}/BTC`
-              : JSON.stringify(priceDataSet)}
-          </div> */}
+              {(priceDataSet.values || []).length === 0
+                ? `Простите, друзья, но в настоящий момент отсутствуют котировки по паре ${cryptoName}/BTC`
+                : JSON.stringify(priceDataSet)}
+            </div> */}
+            <div>
+              <Chart />
+            </div>
           </div>
         )}
       </div>
