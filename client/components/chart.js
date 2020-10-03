@@ -20,10 +20,11 @@ const Chart = () => {
 
   useEffect(() => {
     if (priceDataSet.status === 'ok') {
-      const chartData = priceDataSet.values.reverse()
-
+      const chartData = priceDataSet.values.sort(
+        (a, b) => new Date(a.datetime) - new Date(b.datetime)
+      )
       const width = 720
-      const height = 400
+      const height = 350
 
       d3.selectAll('#chart svg').remove()
 
@@ -32,7 +33,7 @@ const Chart = () => {
         .append('svg')
         .attr('width', width)
         .attr('height', height)
-        .attr('viewBox', '0 0 720.0001 400.0001')
+        .attr('viewBox', '0 0 720.0001 350.0001')
 
       const yScale = d3
         .scaleLinear()
@@ -42,7 +43,7 @@ const Chart = () => {
       const chartline = d3
         .line()
         .curve(d3.curveBasis)
-        .x((item, index) => (index * width) / chartData.length + 2)
+        .x((item, index) => (index * width) / chartData.length)
         .y((item) => height - yScale(item.close))
 
       svg
@@ -55,6 +56,8 @@ const Chart = () => {
         .attr('stroke-width', '2.5')
         .attr('fill', 'none')
         .attr('d', chartline)
+
+      console.log(chartData)
     } else {
       d3.selectAll('#chart svg').remove()
     }
@@ -71,7 +74,7 @@ const Chart = () => {
       </div>
       <p className="text-xl font-semibold">
         {priceDataSet.status !== 'error'
-          ? `суточные изменения цены по паре ${
+          ? `Изменения цены за последние сутки по паре ${
               crypto.symbol === 'BTC' ? 'BTC/USDT' : `${crypto.symbol}/BTC`
             }`
           : ''}
