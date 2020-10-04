@@ -1,18 +1,11 @@
 import React, { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import * as d3 from 'd3'
-// import {
-//   select,
-//   line,
-//   curveLinear,
-//   curveBasis,
-//   curveCardinal,
-//   curveMonotoneX,
-//   curveCatmullRom,
-//   curveStepBefore,
-//   curveStepAfter,
-//   curveStep
-// } from 'd3'
+
+const width = 720
+const height = 350
+const x_margin = 5
+const y_margin = 10
 
 const Chart = () => {
   const crypto = useSelector((store) => store.cryptos.crypto)
@@ -23,8 +16,6 @@ const Chart = () => {
       const chartData = priceDataSet.values.sort(
         (a, b) => new Date(a.datetime) - new Date(b.datetime)
       )
-      const width = 720
-      const height = 350
 
       d3.selectAll('#chart svg').remove()
 
@@ -38,13 +29,13 @@ const Chart = () => {
       const yScale = d3
         .scaleLinear()
         .domain([d3.min(chartData, (it) => it.low), d3.max(chartData, (it) => it.high)])
-        .range([0, height])
+        .range([height - y_margin * 2, 0])
 
       const chartline = d3
         .line()
         .curve(d3.curveBasis)
-        .x((item, index) => (index * width) / chartData.length)
-        .y((item) => height - yScale(item.close))
+        .x((item, index) => (index * width) / (chartData.length + 2) + x_margin)
+        .y((item) => yScale(item.close))
 
       svg
         .append('path')
@@ -57,7 +48,12 @@ const Chart = () => {
         .attr('fill', 'none')
         .attr('d', chartline)
 
-      console.log(chartData)
+      const y_axis = d3.axisRight().scale(yScale)
+
+      svg
+        .append('g')
+        .attr('transform', `translate(${width - 70}, 10)`)
+        .call(y_axis.ticks(5))
     } else {
       d3.selectAll('#chart svg').remove()
     }
@@ -65,16 +61,16 @@ const Chart = () => {
 
   return (
     <div className="flex flex-col justify-center items-center">
-      <div id="chart" className="hover:bg-gray-100 hover:shadow-xl mb-10">
+      <div id="chart" className="shadow-xl mb-5">
         <div className="flex justify-center text-green-800">
           {priceDataSet.status === 'error'
             ? `Простите, друзья, но в настоящий момент отсутствуют котировки по паре ${crypto.symbol}/BTC`
             : ''}
         </div>
       </div>
-      <p className="text-xl font-semibold">
+      <p className="font-semibold">
         {priceDataSet.status !== 'error'
-          ? `Изменения цены за последние сутки по паре ${
+          ? `Изменение цены за последние сутки по паре ${
               crypto.symbol === 'BTC' ? 'BTC/USDT' : `${crypto.symbol}/BTC`
             }`
           : ''}
