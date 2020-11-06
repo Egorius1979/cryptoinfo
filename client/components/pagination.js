@@ -13,6 +13,7 @@ const Pagination = () => {
         <Link to="1">
           <button
             type="button"
+            disabled={+page === 1}
             className={`${
               +page === 1 ? 'cursor-not-allowed' : 'inline-block'
             } w-10 bg-transparent rounded-l-lg mr-3 hover:bg-green-800 hover:text-white md:w-14 outline`}
@@ -24,6 +25,7 @@ const Pagination = () => {
         <Link to={`${+page > 1 ? +page - 1 : +page}`}>
           <button
             type="button"
+            disabled={+page === 1}
             className={`${
               +page === 1 ? 'cursor-not-allowed' : 'inline-block'
             } w-12 bg-transparent text-black hover:bg-black hover:text-white tracking-wider md:w-16 outline`}
@@ -35,6 +37,7 @@ const Pagination = () => {
         <Link to={`${+page < pagesAmount ? +page + 1 : +page}`}>
           <button
             type="button"
+            disabled={+page === pagesAmount}
             className={`${
               +page === pagesAmount ? 'cursor-not-allowed' : 'inline-block'
             } w-12 bg-transparent mr-3 text-black hover:bg-black hover:text-white tracking-wider md:w-16 outline`}
@@ -46,6 +49,7 @@ const Pagination = () => {
         <Link to={`${pagesAmount}`}>
           <button
             type="button"
+            disabled={+page === pagesAmount}
             className={`${
               +page === pagesAmount ? 'cursor-not-allowed' : 'inline-block'
             } w-10 bg-transparent rounded-r-lg hover:bg-green-800 hover:text-white md:w-14 outline`}

@@ -63,11 +63,6 @@ const Currency = () => {
                 </a>
               </li>
             </ul>
-            {/* <div className="flex justify-center text-green-800">
-              {(priceDataSet.values || []).length === 0
-                ? `Простите, друзья, но в настоящий момент отсутствуют котировки по паре ${cryptoName}/BTC`
-                : JSON.stringify(priceDataSet)}
-            </div> */}
             <div>
               <Chart />
             </div>
