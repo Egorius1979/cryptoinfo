@@ -61,21 +61,21 @@ const Top = () => {
     .style('writing-mode', 'tb')
 
   return (
-    <div id="top" className="bg-gray-400">
-      <ul className="h-12 flex items-center justify-around text-white font-bold font-sans border border-black sticky_header back md:h-20 md:justify-start">
-        <li className="md:w-1/3 md:pl-16 lg:w-1/5">Name</li>
-        <li className="hidden lg:block lg:w-1/5">Market Cap</li>
-        <li className="hidden lg:block lg:w-1/5">Circulating supply</li>
-        <li className="md:w-1/3 lg:w-1/5">Price</li>
-        <li className="hidden md:block md:w-1/3 lg:w-1/5">Change(24h)</li>
+    <div id="top">
+      <ul className="h-12 grid-set items-center mx-auto font-bold font-sans bg-gray-900 text-white border border-black sticky_header md:h-16 xl:w-3/5">
+        <li className="pl-10 md:pl-16">Name</li>
+        <li className="hidden md:block">Market Cap</li>
+        <li className="hidden md:block">Circulating supply</li>
+        <li>Price</li>
+        <li className="hidden md:block">Change(24h)</li>
       </ul>
-      <div className="bg-gray-800 text-white text-sm lg:text-base">
+      <div className="bg-gray-800 text-white text-sm lg:text-base xl:mx-auto xl:w-3/5">
         {(toplist || []).map((it) => (
           <ul
-            className="flex items-center text-orange-400 h-12 border border-black coin-hover"
+            className="grid-set items-center text-orange-400 h-12 border border-black coin-hover"
             key={it.id}
           >
-            <li className="w-1/2 flex items-center text-base md:w-1/3 lg:pl-5 lg:text-xl lg:w-1/5 ">
+            <li className="flex items-center text-base lg:pl-5 lg:text-xl">
               <div className={`mr-3 ${it.cmc_rank < 10 ? 'pl-2' : 'pl-0'}`}>{it.cmc_rank}.</div>
               <img
                 className="w-5 h-5 mr-2"
@@ -83,20 +83,18 @@ const Top = () => {
                 alt="logo"
               />
               <Link to={`/${it.symbol}`}>
-                <div className="text-gray-300 name-cover">{it.name}</div>
+                <div className="text-gray-300 name-cover items-center">{it.name}</div>
               </Link>
             </li>
-            <li className="hidden lg:block lg:w-1/5 md:text-red-400">
+            <li className="hidden md:block  md:text-red-400 items-center">
               ${Math.round(it.quote.USD.market_cap)}
             </li>
-            <li className="hidden lg:block lg:w-1/5 lg:text-blue-600">
+            <li className="hidden md:block  lg:text-blue-600 items-center">
               {Math.round(it.circulating_supply)} {it.symbol}
             </li>
-            <li className="w-1/2 flex justify-center md:w-1/3 lg:w-1/5 md:block text-blue-300">
-              ${it.quote.USD.price.toFixed(2)}
-            </li>
+            <li className="md:block text-blue-300">${it.quote.USD.price.toFixed(2)}</li>
             <li
-              className={`hidden md:block md:w-1/3 lg:w-1/5 ${
+              className={`hidden md:block  ${
                 it.quote.USD.percent_change_24h < 0 ? 'text-red-600' : 'text-green-600'
               }
                 ${

@@ -30,7 +30,7 @@ const Currency = () => {
           </div>
         ) : (
           <div>
-            <div className="flex items-center p-2 space-x-3 back lg:space-x-4 lg:p-5 sticky_header">
+            <div className="flex items-center p-2 space-x-3 back lg:space-x-4 sticky_header">
               <img className="h-10 header_padding lg:h-full" src={crypto.logo} alt="logo" />
               <span className="text-2xl antialiased font-sans font-medium text-white lg:text-4xl">
                 {crypto.name}
@@ -39,7 +39,7 @@ const Currency = () => {
                 <p>${cryptoPrice}</p>
               </div>
             </div>
-            <div className="p-1 bg-gray-100 shadow-lg w-full lg:w-3/4 lg:mx-auto">
+            <div className="p-1 bg-gray-100 shadow-lg w-full xl:w-3/5 xl:mx-auto">
               <ReactMarkdown source={crypto.description} />
             </div>
             <ul className="flex links_padding space-x-4 justify-end m-3 lg:my-6">

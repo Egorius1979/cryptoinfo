@@ -15,7 +15,6 @@
 
 .coin-hover {
   pointer-events: none;
-  /* background: #000; */
 }
 
 .name-cover {
@@ -33,16 +32,37 @@
   transition-duration: 2s;
 }
 
-@media (min-width: 1024px) {
-    .header_padding {
-    padding-left: 12vw;
-  }
-    .links_padding {
-      padding-right: 14vw;
-    }
-}
+
 
 .outline {
   outline: none !important;
   border: 0 !important;
+}
+
+.grid-set {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+}
+
+@media (min-width: 768px) {
+  .grid-set {
+    display: grid;
+    grid-template-columns: 2fr 1.5fr 1.5fr 1fr 1fr;
+  }
+}
+@media (min-width: 1440px) {
+    .header_padding {
+    padding-left: 20vw;
+  }
+    .links_padding {
+      padding-right: 20vw;
+    }
+      .grid-set {
+    display: grid;
+    grid-template-columns: 2.5fr 1.5fr 1.5fr 1fr 1fr;
+  }
+}
+
+.top-list-header {
+  padding: 0 20vw;
 }
