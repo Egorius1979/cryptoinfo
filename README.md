@@ -4,7 +4,7 @@
 
 ## Стек
 
-**React/Redux/D3/TailwindCSS**
+**`React/Redux/D3/TailwindCSS`**
 
 ## Деплой
 
