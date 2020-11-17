@@ -7,9 +7,9 @@ import Pagination from './pagination'
 
 const Top = () => {
   const [selected, setSelected] = useState('')
-  const dispatch = useDispatch()
   const { cryptoNumber, page } = useParams()
   const toplist = useSelector((store) => store.cryptos.toplist[+page - 1])
+  const dispatch = useDispatch()
 
   const width = 1200
   const height = 400
@@ -24,7 +24,7 @@ const Top = () => {
 
   useEffect(() => {
     dispatch(getList(cryptoNumber))
-  }, [cryptoNumber])
+  }, [cryptoNumber, dispatch])
 
   selectAll('#chart svg').remove()
 

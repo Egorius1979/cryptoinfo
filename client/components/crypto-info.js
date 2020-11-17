@@ -19,7 +19,7 @@ const Currency = () => {
     dispatch(getCrypto(cryptoName))
     dispatch(getPrice(cryptoName))
     dispatch(getPriceData(cryptoName))
-  }, [])
+  }, [cryptoName, dispatch])
 
   if (crypto) {
     return (
