@@ -57,11 +57,12 @@ const Top = () => {
     .text((item) => item)
     .attr('x', (item, index) => index * (width / (toplist || []).length) + barWidth / 2)
     .attr('y', (item, index) => (change.map((it) => it.change)[index] > 0 ? zero + 10 : zero - 50))
-
     .style('writing-mode', 'tb')
+    .style('font-size', '16px')
+    .style('font-weight', 600)
 
   return (
-    <div id="top">
+    <div id="top" className="back-top">
       <ul className="h-12 grid-set items-center mx-auto font-bold font-sans bg-gray-900 text-white border border-black sticky_header md:h-16 xl:w-3/5">
         <li className="pl-10 md:pl-16">Name</li>
         <li className="hidden md:block">Market Cap</li>
@@ -108,15 +109,19 @@ const Top = () => {
           </ul>
         ))}
       </div>
-      <div className="hidden text-center my-4 md:block">
+      <div className="hidden text-center my-4 md:block text-xl font-black">
         <span>Change 24h</span>
       </div>
-      <div id="chart" className="hidden justify-center m-2 md:flex" />
-      <div className="flex flex-col justify-center items-center mb-10">
+      <div id="chart" className="hidden justify-center p-2 md:flex" />
+      <div className="flex flex-col justify-center items-center pb-10">
         <Link to={`/${selected.symbol}`}>
-          <p className="text-2xl text-green-600 font-bold">{selected.name}</p>
+          <p className="text-green-800 text-3xl font-black">{selected.name}</p>
         </Link>
-        <span className={`${!selected.cmc_rank ? 'hidden' : 'block text-red-700'}`}>
+        <span
+          className={`${
+            !selected.cmc_rank ? 'hidden' : 'block text-orange-900 text-2xl font-black'
+          }`}
+        >
           top-list rank: {selected.cmc_rank}
         </span>
       </div>

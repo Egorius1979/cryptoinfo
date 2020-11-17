@@ -9,7 +9,7 @@ const Pagination = () => {
 
   if (cryptoNumber > coinsOnPage) {
     return (
-      <div className="flex justify-center items-center bg-gray-500 py-2 border-black border md:py-3">
+      <div className="flex justify-center items-center bg-gray-500 py-2 border-black border-t md:py-3">
         <Link to="1">
           <button
             type="button"
