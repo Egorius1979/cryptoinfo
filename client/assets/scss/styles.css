@@ -55,7 +55,7 @@
     grid-template-columns: 2fr 1.5fr 1.5fr 1fr 1fr;
   }
 }
-@media (min-width: 1440px) {
+@media (min-width: 1280px) {
     .header_padding {
     padding-left: 20vw;
   }

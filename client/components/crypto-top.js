@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useParams, Link } from 'react-router-dom'
 import { select, selectAll } from 'd3'
 import { getList } from '../redux/reducers/cryptocurrencies'
+import exit from '../assets/static/images/home-6-48.png'
 import Pagination from './pagination'
 
 const Top = () => {
@@ -63,6 +64,14 @@ const Top = () => {
 
   return (
     <div id="top" className="back-top">
+      <Link to="/">
+        <img
+          src={exit}
+          alt="home"
+          className="hidden h-10 absolute mt-4 ml-32 xl:block transform hover:-translate-y-1 hover:scale-110"
+          title="подальше отсюда"
+        />
+      </Link>
       <ul className="h-12 grid-set items-center mx-auto font-bold font-sans bg-gray-900 text-white border border-black sticky_header md:h-16 xl:w-3/5">
         <li className="pl-10 md:pl-16">Name</li>
         <li className="hidden md:block">Market Cap</li>
@@ -113,7 +122,7 @@ const Top = () => {
         <span>Change 24h</span>
       </div>
       <div id="chart" className="hidden justify-center p-2 md:flex" />
-      <div className="flex flex-col justify-center items-center pb-10">
+      <div className="flex flex-col justify-center items-center pb-0 md:pb-10">
         <Link to={`/${selected.symbol}`}>
           <p className="text-green-800 text-3xl font-black">{selected.name}</p>
         </Link>
