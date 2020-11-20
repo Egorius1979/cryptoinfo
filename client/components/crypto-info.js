@@ -63,7 +63,7 @@ const Currency = () => {
                 </a>
               </li>
             </ul>
-            <div>
+            <div className="hidden sm:block">
               <Chart />
             </div>
           </div>
