@@ -19,7 +19,7 @@ const List = () => {
   }
 
   return (
-    <div className="flex mb-20">
+    <div className="flex">
       <div>
         <input
           className="bg-white focus:outline-none border border-gray-300 py-2 px-4 block appearance-none leading-normal
