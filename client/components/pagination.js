@@ -17,7 +17,13 @@ const Pagination = () => {
             className={`${
               +page === 1 ? 'cursor-not-allowed' : 'inline-block'
             } w-10 bg-transparent rounded-l-lg mr-3 hover:bg-green-800 hover:text-white md:w-14 outline`}
-            onClick={() => window.scroll(0, 0)}
+            onClick={() =>
+              window.scroll({
+                left: 0,
+                top: 0,
+                behavior: 'smooth'
+              })
+            }
           >
             {'<<'}
           </button>
@@ -29,7 +35,13 @@ const Pagination = () => {
             className={`${
               +page === 1 ? 'cursor-not-allowed' : 'inline-block'
             } w-12 bg-transparent text-black hover:bg-black hover:text-white tracking-wider md:w-16 outline`}
-            onClick={() => window.scroll(0, 0)}
+            onClick={() =>
+              window.scroll({
+                left: 0,
+                top: 0,
+                behavior: 'smooth'
+              })
+            }
           >
             Prev
           </button>
@@ -41,7 +53,13 @@ const Pagination = () => {
             className={`${
               +page === pagesAmount ? 'cursor-not-allowed' : 'inline-block'
             } w-12 bg-transparent mr-3 text-black hover:bg-black hover:text-white tracking-wider md:w-16 outline`}
-            onClick={() => window.scroll(0, 0)}
+            onClick={() =>
+              window.scroll({
+                left: 0,
+                top: 0,
+                behavior: 'smooth'
+              })
+            }
           >
             Next
           </button>
@@ -53,7 +71,13 @@ const Pagination = () => {
             className={`${
               +page === pagesAmount ? 'cursor-not-allowed' : 'inline-block'
             } w-10 bg-transparent rounded-r-lg hover:bg-green-800 hover:text-white md:w-14 outline`}
-            onClick={() => window.scroll(0, 0)}
+            onClick={() =>
+              window.scroll({
+                left: 0,
+                top: 0,
+                behavior: 'smooth'
+              })
+            }
           >
             {'>>'}
           </button>
