@@ -82,7 +82,7 @@ const Top = () => {
       <div className="bg-gray-800 text-white text-sm lg:text-base xl:mx-auto xl:w-3/5">
         {(toplist || []).map((it) => (
           <ul
-            className="grid-set items-center text-orange-400 h-12 border border-black coin-hover"
+            className="grid-set items-center text-orange-400 min-h-fit py-2 border border-black coin-hover"
             key={it.id}
           >
             <li className="flex items-center text-base lg:pl-5 lg:text-xl">
@@ -97,12 +97,12 @@ const Top = () => {
               </Link>
             </li>
             <li className="hidden md:block  md:text-red-400 items-center">
-              ${Math.round(it.quote.USD.market_cap)}
+              {Math.round(it.quote.USD.market_cap)}
             </li>
             <li className="hidden md:block  lg:text-blue-600 items-center">
               {Math.round(it.circulating_supply)} {it.symbol}
             </li>
-            <li className="md:block text-blue-300">${it.quote.USD.price.toFixed(2)}</li>
+            <li className="md:block text-blue-300">{it.quote.USD.price.toFixed(2)}</li>
             <li
               className={`hidden md:block  ${
                 it.quote.USD.percent_change_24h < 0 ? 'text-red-600' : 'text-green-600'

@@ -31,12 +31,12 @@ const Currency = () => {
         ) : (
           <div>
             <div className="flex items-center p-2 space-x-3 back lg:space-x-4 sticky_header">
-              <img className="h-10 header_padding lg:h-full" src={crypto.logo} alt="logo" />
+              <img className="h-12 header_padding lg:h-16" src={crypto.logo} alt="logo" />
               <span className="text-2xl antialiased font-sans font-medium text-white lg:text-4xl">
                 {crypto.name}
               </span>
               <div className="pt-1 pl-4 text-green-400 text-sm lg:pl-5 lg:pt-3 lg:text-base">
-                <p>${cryptoPrice}</p>
+                <p>{cryptoPrice}</p>
               </div>
             </div>
             <div className="p-1 bg-gray-100 shadow-lg w-full xl:w-3/5 xl:mx-auto">
